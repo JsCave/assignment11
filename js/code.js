@@ -47,7 +47,27 @@ else{
 
 }
 
+function login(page){    
+  errorAlert.style.display='none'
+let validationResult=validation(page)
+let searchResult=search(page)
+console.log(searchResult)
+if(validationResult && !searchResult){
+  let newUser={
+    username:userName.value.trim(),
+    password:userPassword.value.trim(),
+    email:userEmail.value.trim()
+  }
+  users.push(newUser)
+  localStorage.setItem('users',JSON.stringify(users))
+  successAlert.style.display='block'
+}else if(!validationResult){ errorAlert.innerHTML="kindly sure you inserted right email,username & valid password"; errorAlert.style.display='block';}
+else if(searchResult){ errorAlert.innerHTML="username or email already taken";errorAlert.style.display='block';}
+else{
+ errorAlert.innerHTML="kindly sure from your input";errorAlert.style.display='block';
+}
 
+}
 
 
 
