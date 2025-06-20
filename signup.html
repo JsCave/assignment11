@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SignUp</title>
+
+<link rel="stylesheet" href="css/all.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="img/bookmark.png">
+<script src="js/all.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+<div class="container text-center my-5 px-3">
+    <div class="group m-auto w-75 p-5">
+<h1 class="text-info">Smart Login System</h1>
+<div id="success" class="bg-success-subtle text-success" style="display: none;">You Created Account Succesfully now you can go to Signin Page</div>
+<div id="alert" class="bg-danger-subtle text-danger" style="display: none;">You Created Account Succesfully now you can go to Signin Page</div>
+<form>
+    <input type="text"  class="form-control my-3 bg-transparent" style="color: #fff;" placeholder="Enter Your Name" id="userName">
+<input type="text"  class="form-control my-3 bg-transparent" style="color: #fff;" placeholder="Enter Your Email" id="userEmail">
+<input type="text" class="form-control my-3 bg-transparent" style="color: #fff;" placeholder="Enter Your Password" id="userPassword">
+</form>
+<button class="form-control btn btn-outline-info mt-3" onclick="signUp('signUp')">Sign Up</button>
+<p class="my-3 text-white">Don’t have an account? <a class="text-white" href="index.html">Signin</a></p>
+</div>
+  </div>
+
+        <script src="js/code.js"></script>
+    </body>
+</html>

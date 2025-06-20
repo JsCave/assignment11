@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #24353f;
+    margin:0px;
+    font-family: "Poppins", sans-serif;
+}
+.group{
+box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+}
+
+input{
+    color: #fff;
+}
+
+.form-control::-webkit-input-placeholder { color: rgb(182, 172, 172); }
+.form-control:-moz-placeholder { color: rgb(182, 172, 172); }
+.form-control::-moz-placeholder { color: rgb(182, 172, 172); }
+.form-control:-ms-input-placeholder { color: rgb(182, 172, 172); }
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
