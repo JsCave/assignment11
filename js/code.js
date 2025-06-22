@@ -14,7 +14,8 @@ function validation(page){   //validate entries
   const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;
   const passwordRegex = /^[a-zA-Z0-9@!_+-]{6,16}$/;
   let isValidEmail=emailRegex.test(userEmail.value.trim());
-  if(page=='signUp') {let isValidUsername=usernameRegex.test(userName.value.trim());}
+  let isValidUsername=""
+  if(page=='signUp') {isValidUsername=usernameRegex.test(userName.value.trim());}
   let isValidPassword=passwordRegex.test(userPassword.value.trim());
   if(page=='signUp'){ if(isValidEmail&&isValidUsername&&isValidPassword){ return true;}else {return false}}
   if(page=='signIn'){ if(isValidEmail&&isValidPassword) { return true;}else {return false}}
