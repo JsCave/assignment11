@@ -5,7 +5,7 @@ const successAlert=document.getElementById('success')
 const errorAlert=document.getElementById('alert')
 const intro=document.getElementById('intro')
 
-let users=[{username:"alaa",password:"123456",email:"corniith@gmail.com"}]
+let users=[]
 if(localStorage.getItem('users')){
   users=JSON.parse(localStorage.getItem('users'))
 }
