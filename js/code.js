@@ -18,8 +18,15 @@ function validation(page){   //validate entries
   let isValidUsername=""
   if(page=='signUp') {isValidUsername=usernameRegex.test(userName.value.trim());}
   let isValidPassword=passwordRegex.test(userPassword.value.trim());
-  if(page=='signUp'){ if(isValidEmail&&isValidUsername&&isValidPassword){ return true;}else {return false}}
-  if(page=='signIn'){ if(isValidEmail&&isValidPassword) { return true;}else {return false}}
+  if(page=='signUp'){ if(isValidEmail&&isValidUsername&&isValidPassword){ return true;}else {
+        if(isValidEmail){errors+=`Email You Inserted not Valid<br>`}
+    if(isValidUsername){errors+=`UserName You Inserted not Valid<br>`}
+    if(isValidPassword){errors+=`Password You Inserted not Valid<br>`}
+    return false}}
+  if(page=='signIn'){ if(isValidEmail&&isValidPassword) { return true;}else {
+        if(isValidEmail){errors+=`Email You Inserted not Valid<br>`}
+    if(isValidPassword){errors+=`Password You Inserted not Valid<br>`}
+    return false}}
 }
 
 function search(page){ //search if user exist before
@@ -54,7 +61,7 @@ if(validationResult && !searchResult){
   users.push(newUser)
   localStorage.setItem('users',JSON.stringify(users))
   successAlert.style.display='block'
-}else if(!validationResult){ errorAlert.innerHTML="kindly sure you inserted right email,username & valid password"; errorAlert.style.display='block';}
+}else if(!validationResult){ errorAlert.innerHTML=errors; errorAlert.style.display='block';}
 else if(searchResult){ errorAlert.innerHTML="username or email already taken";errorAlert.style.display='block';}
 else{
  errorAlert.innerHTML="kindly sure from your input";errorAlert.style.display='block';
@@ -72,7 +79,7 @@ if(validationResult && searchResult){
     });
 localStorage.setItem("sessionName",findName.username)
 window.location.replace("home.html");
-}else if(!validationResult){ errorAlert.innerHTML="kindly sure you inserted right email pattern & valid password"; errorAlert.style.display='block';}
+}else if(!validationResult){ errorAlert.innerHTML=errors; errorAlert.style.display='block';}
 else if(!searchResult){ errorAlert.innerHTML="sure from email or password";errorAlert.style.display='block';}
 else{
  errorAlert.innerHTML="kindly sure from your input";errorAlert.style.display='block';
