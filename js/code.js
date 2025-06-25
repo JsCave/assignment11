@@ -65,7 +65,7 @@ if(validationResult && !searchResult){
 }else if(!validationResult){  handleErrors(errors)}
 else if(searchResult){ 
   let findName = users.find(function(person) {
-    return person.userName == userName.value;
+    return person.username == userName.value;
   });
   let findEmail = users.find(function(person) {
     return person.email == userEmail.value;
@@ -94,8 +94,8 @@ localStorage.setItem("sessionName",findName.username)
 window.location.replace("home.html");
 }else if(!validationResult){ handleErrors(errors)}
 else if(!searchResult){ 
-  let findName = users.find(function(person) {
-    return person.userName == userName.value;
+  let findPassword = users.find(function(person) {
+    return person.password == userPassword.value;
   });
   let findEmail = users.find(function(person) {
     return person.email == userEmail.value;
