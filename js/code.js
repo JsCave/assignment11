@@ -70,13 +70,13 @@ else if(searchResult){
   let findEmail = users.find(function(person) {
     return person.email == userEmail.value;
   });
-if(findName !== undefined){errors.push('username already taken')}
-if(findEmail !== undefined){errors.push('email already taken')}
+if(findName !== undefined){errors.push('username already taken<br>')}
+if(findEmail !== undefined){errors.push('email already taken<br>')}
 
   handleErrors(errors)
 }
 else{
-  errors.push("kindly sure from your input")
+  errors.push("kindly sure from your input<br>")
  handleErrors(errors)
 }
 }
@@ -100,8 +100,8 @@ else if(!searchResult){
   let findEmail = users.find(function(person) {
     return person.email == userEmail.value;
   });
-if(findPassword !== undefined){errors.push('incorrect Password')}
-if(findEmail !== undefined){errors.push('email not found')}
+if(findPassword !== undefined){errors.push('incorrect Password<br>')}
+if(findEmail !== undefined){errors.push('email not found<br>')}
 
   handleErrors(errors)
 }
