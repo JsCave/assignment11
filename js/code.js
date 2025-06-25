@@ -9,6 +9,7 @@ let users=[]
 if(localStorage.getItem('users')){
   users=JSON.parse(localStorage.getItem('users'))
 }
+let errors=[]
 function validation(page){   //validate entries
   const emailRegex=  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;
@@ -17,8 +18,15 @@ function validation(page){   //validate entries
   let isValidUsername=""
   if(page=='signUp') {isValidUsername=usernameRegex.test(userName.value.trim());}
   let isValidPassword=passwordRegex.test(userPassword.value.trim());
-  if(page=='signUp'){ if(isValidEmail&&isValidUsername&&isValidPassword){ return true;}else { return false}}
-  if(page=='signIn'){ if(isValidEmail&&isValidPassword) { return true;}else { return false}}
+  if(page=='signUp'){ if(isValidEmail&&isValidUsername&&isValidPassword){ return true;}else {     
+    if(!isValidUsername){errors.push('username not valid<br>')}
+    if(!isValidEmail){errors.push('email not valid<br>')}
+    if(!isValidPassword){errors.push('password not valid<br>')}
+    return false}}
+  if(page=='signIn'){ if(isValidEmail&&isValidPassword) { return true;}else {
+    if(!isValidEmail){errors.push('email not valid<br>')}
+    if(!isValidPassword){errors.push('password not valid<br>')}
+    return false}}
 }
 
 function search(page){ //search if user exist before
@@ -54,10 +62,22 @@ if(validationResult && !searchResult){
   localStorage.setItem('users',JSON.stringify(users))
   window.location.replace("index.html");
   //successAlert.style.display='block'
-}else if(!validationResult){ errorAlert.innerHTML="kindly sure you inserted right email,username & valid password"; errorAlert.style.display='block';}
-else if(searchResult){ errorAlert.innerHTML="username or email already taken";errorAlert.style.display='block';}
+}else if(!validationResult){  handleErrors(errors)}
+else if(searchResult){ 
+  let findName = users.find(function(person) {
+    return person.userName == userName.value;
+  });
+  let findEmail = users.find(function(person) {
+    return person.email == userEmail.value;
+  });
+if(findName !== undefined){errors.push('username already taken')}
+if(findEmail !== undefined){errors.push('email already taken')}
+
+  handleErrors(errors)
+}
 else{
- errorAlert.innerHTML="kindly sure from your input";errorAlert.style.display='block';
+  errors.push("kindly sure from your input")
+ handleErrors(errors)
 }
 }
 
@@ -72,10 +92,22 @@ if(validationResult && searchResult){
     });
 localStorage.setItem("sessionName",findName.username)
 window.location.replace("home.html");
-}else if(!validationResult){ errorAlert.innerHTML="kindly sure you inserted right email pattern & valid password"; errorAlert.style.display='block';}
-else if(!searchResult){ errorAlert.innerHTML="sure from email or password";errorAlert.style.display='block';}
+}else if(!validationResult){ handleErrors(errors)}
+else if(!searchResult){ 
+  let findName = users.find(function(person) {
+    return person.userName == userName.value;
+  });
+  let findEmail = users.find(function(person) {
+    return person.email == userEmail.value;
+  });
+if(findName !== undefined){errors.push('username already taken')}
+if(findEmail !== undefined){errors.push('email already taken')}
+
+  handleErrors(errors)
+}
 else{
- errorAlert.innerHTML="kindly sure from your input";errorAlert.style.display='block';
+  errors.push("kindly sure from your input");
+ handleErrors(errors)
 }
 
 }
@@ -92,3 +124,13 @@ localStorage.removeItem('sessionName')
   }
 }
 
+function handleErrors(list){
+  let temp=''
+
+  for(let i=0;i<list.length;i++){
+temp+=list[i]
+  }
+  errorAlert.innerHTML=temp;
+  errorAlert.style.display='block';
+  errors=[];
+}
