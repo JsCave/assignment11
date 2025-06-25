@@ -9,6 +9,7 @@ let users=[]
 if(localStorage.getItem('users')){
   users=JSON.parse(localStorage.getItem('users'))
 }
+let errors=""
 function validation(page){   //validate entries
   const emailRegex=  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/;
@@ -82,5 +83,12 @@ else{
 if(localStorage.getItem('sessionName')){
   let loggedUser=localStorage.getItem('sessionName').toUpperCase()
   intro.innerHTML=`welcome ${loggedUser}`
+}
+
+function logout(){
+  if(localStorage.getItem('sessionName')){
+localStorage.removeItem('sessionName')
+    window.location.replace("index.html");
+  }
 }
 
