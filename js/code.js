@@ -52,7 +52,8 @@ if(validationResult && !searchResult){
   }
   users.push(newUser)
   localStorage.setItem('users',JSON.stringify(users))
-  successAlert.style.display='block'
+  window.location.replace("index.html");
+  //successAlert.style.display='block'
 }else if(!validationResult){ errorAlert.innerHTML="kindly sure you inserted right email,username & valid password"; errorAlert.style.display='block';}
 else if(searchResult){ errorAlert.innerHTML="username or email already taken";errorAlert.style.display='block';}
 else{
