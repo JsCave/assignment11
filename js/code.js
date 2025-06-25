@@ -100,8 +100,8 @@ else if(!searchResult){
   let findEmail = users.find(function(person) {
     return person.email == userEmail.value;
   });
-if(findName !== undefined){errors.push('username already taken')}
-if(findEmail !== undefined){errors.push('email already taken')}
+if(findPassword !== undefined){errors.push('incorrect Password')}
+if(findEmail !== undefined){errors.push('email not found')}
 
   handleErrors(errors)
 }
