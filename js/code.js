@@ -68,7 +68,7 @@ let validationResult=validation(page)
 let searchResult=search(page)
 if(validationResult && searchResult){
   let findName=users.find(function(person){ 
-    return person.username
+    return person.username.toLowerCase()==userName.value.toLowerCase().trim()
     });
 localStorage.setItem("sessionName",findName.username)
 window.location.replace("home.html");
